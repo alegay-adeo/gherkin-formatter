@@ -2,7 +2,9 @@
   "name": "@adeo/gherkin-formatter",
   "version": "1.0.1",
   "description": "Tool to format gherkin-ast model to gherkin string",
-  "bin": "cli.js",
+  "bin": {
+    "gherkin-fmt": "cli.js"
+  },
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -12,12 +14,13 @@
     "typedoc": "typedoc --out ./docs ./src && touch ./docs/.nojekyll",
     "clean": "rimraf ./dist ./docs",
     "test": "jest --coverage",
-    "tslint": "tslint -c tslint.json ./src/**/*.ts ./tests/**/*.ts",
-    "compile": "tsc && npm run tslint"
+    "pretty": "prettier --write ./src/**/*.ts ./tests/**/*.ts",
+    "lint": "eslint --fix ./src/**/*.ts ./tests/**/*.ts",
+    "compile": "tsc && npm run pretty && npm run lint"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gherking/gherkin-formatter.git"
+    "url": "git+https://github.com/alegay-adeo/gherkin-formatter.git"
   },
   "keywords": [
     "Gherkin",
@@ -29,7 +32,6 @@
     "Examples",
     "AST"
   ],
-  "author": "GherKing (https://github.com/gherking)",
   "license": "MIT",
   "files": [
     "**/*.js",
@@ -40,9 +42,9 @@
     "node": ">=12.0.0"
   },
   "bugs": {
-    "url": "https://github.com/gherking/gherkin-formatter/issues"
+    "url": "https://github.com/alegay-adeo/gherkin-formatter/issues"
   },
-  "homepage": "https://github.com/gherking/gherkin-formatter#readme",
+  "homepage": "https://github.com/alegay-adeo/gherkin-formatter#readme",
   "devDependencies": {
     "@types/args": "^5.0.0",
     "@types/cli-table": "^0.3.0",
@@ -51,14 +53,18 @@
     "@types/debug": "^4.1.5",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.20.37",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
     "copyfiles": "^2.1.0",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
     "jest": "^24.8.0",
     "jest-junit": "^6.4.0",
+    "prettier": "^2.5.0",
     "rimraf": "^2.6.3",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
     "typedoc": "^0.20.28",
-    "typescript": "^3.5.2"
+    "typescript": "^3.9.10"
   },
   "dependencies": {
     "args": "^5.0.1",
